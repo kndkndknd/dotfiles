@@ -1,18 +1,20 @@
+# cf. https://zenn.dev/tsukuboshi/articles/6e82aef942d9af
+
 # Do everything.
 all: init link defaults brew
 
-# Set initial preference.
-init:
-	.bin/init.sh
+# Set macOS initial preference.
+initmac:
+	sh/initmac.sh
 
 # Link dotfiles.
 link:
-	.bin/link.sh
+	sh/link.sh
 
 # Set macOS system preferences.
 defaults:
-	.bin/defaults.sh
+	sh/defaults.sh
 
 # Install macOS applications.
 brew:
-	.bin/brew.sh
+	sh/brew.sh
