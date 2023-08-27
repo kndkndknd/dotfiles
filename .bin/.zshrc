@@ -26,3 +26,4 @@ export PATH="$HOME/.cargo/bin:$PATH"
 alias ci='code-insiders .'
 alias nvimconfig='nvim ~/.config/nvim/init.lua'
 alias v='nvim'
+alias work='cd ~/Sync/work'

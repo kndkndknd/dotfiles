@@ -58,6 +58,5 @@ font:
 shell:
   program: /opt/homebrew/bin/tmux
   args:
-    - -l
     - -c
-    - 'tmux a -t default || tmux new -s default'
+    - '/opt/homebrew/bin/tmux a -t default || /opt/homebrew/bin/tmux new -s default'
