@@ -13,6 +13,7 @@ brew "llvm"
 brew "neovim"
 brew "protobuf"
 brew "rustup-init"
+brew "sox"
 brew "syncthing", restart_service: true
 brew "tmux"
 brew "wget"
