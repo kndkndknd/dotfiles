@@ -11,37 +11,6 @@ sudo apt install -y curl git zsh wget build-essential
 sudo apt install libffi-dev libssl-dev zlib1g-dev liblzma-dev libbz2-dev \
   libreadline-dev libsqlite3-dev libopencv-dev tk-dev
 
-# ffmpeg
-sudo apt install -y autoconf \
-  automake \
-  cmake \
-  git-core \
-  libass-dev \
-  libfreetype6-dev \
-  libgnutls28-dev \
-  libmp3lame-dev \
-  libsdl2-dev \
-  libtool \
-  libva-dev \
-  libvdpau-dev \
-  libvorbis-dev \
-  libxcb1-dev \
-  libxcb-shm0-dev \
-  libxcb-xfixes0-dev \
-  meson \
-  ninja-build \
-  pkg-config \
-  texinfo \
-  yasm \
-  zlib1g-dev
-sudo apt-get install -y nasm \
-	libx264-dev \
-	libx265-dev libnuma-dev \
-	libvpx-dev \
-	libfdk-aac-dev \
-	libopus-dev \
-	libdav1d-dev
-
 # asdfのインストール
 git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.8.0
 echo '. $HOME/.asdf/asdf.sh' >> ~/.zshrc
