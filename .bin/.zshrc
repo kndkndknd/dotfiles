@@ -4,6 +4,8 @@ if [[ "$OSTYPE" == darwin* ]]; then
     eval "$(/opt/homebrew/bin/brew shellenv)"
     # Load asdf
     . /opt/homebrew/opt/asdf/libexec/asdf.sh
+    # Haskell(tycalCycles)
+    source ${HOME}/.ghcup/env
 fi
 
 # Linux(zsh)
@@ -27,4 +29,3 @@ alias ci='code-insiders .'
 alias nvimconfig='nvim ~/.config/nvim/init.lua'
 alias v='nvim'
 alias work='cd ~/Sync/work'
-source ${HOME}/.ghcup/env
