@@ -1,40 +1,46 @@
--- This file can be loaded by calling `lua require('plugins')` from your init.vim
-local status, packer = pcall(require, "packer")
-if (not status) then
-  print("Packer is not installed")
-  return
-end
-
--- Only required if you have packer configured as `opt`
-vim.cmd [[packadd packer.nvim]]
-
-require("packer").startup(function()
-  -- 起動時に読み込むプラグインを書いてください。
-  -- Packer can manage itself
-  use 'wbthomason/packer.nvim'
-  use {
-    'neoclide/coc.nvim',
-    branch = "release"
-  }
-  use 'prettier/vim-prettier'
-  use 'github/copilot.vim'
-
-  -- https://github.com/iamcco/markdown-preview.nvim
-  -- install without yarn or npm
-  use({
-      "iamcco/markdown-preview.nvim",
-      run = function() vim.fn["mkdp#util#install"]() end,
-  })
-
-  -- use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install", setup = function() vim.g.mkdp_filetypes = { "markdown" } end, ft = { "markdown" }, })
-
-  -- https://github.com/nvim-tree/nvim-tree.lua
-  -- filer
-  use 'nvim-tree/nvim-tree.lua'
-  use 'nvim-tree/nvim-web-devicons'
-
-  -- colorscheme
-  -- https://github.com/EdenEast/nightfox.nvim
-  use "EdenEast/nightfox.nvim"
-
-end)
+-- https://github.com/nvim-tree/nvim-tree.lua
+-- filer
+-- keys property Example for neo-tree.nvim
+-- cf https://zenn.dev/vim_jp/articles/20231113vim_ekiden
+return {
+  {
+    "nvim-tree/nvim-tree.lua",
+    dependencies = {
+      'nvim-tree/nvim-web-devicons',
+    },
+    config = function()
+      require("nvim-tree").setup({
+        sort = {
+          sorter = "case_sensitive",
+        },
+        view = {
+          width = 30,
+        },
+        renderer = {
+          group_empty = true,
+        },
+        filters = {
+          dotfiles = true,
+        },
+      })
+    end,
+    keys = {
+      {mode = "n", "<C-n>", "<cmd>NvimTreeToggle<CR>", desc = "NvimTreeをトグルする"},
+    }
+  },
+  {
+    "nvim-treesitter/nvim-treesitter",
+    opts = {
+        ensure_installed = { "lua", "typescript" },
+        sync_install = true,
+    }, 
+  },
+  {
+    --colorscheme
+    'blueshirts/darcula',
+    config = function()
+      vim.cmd([[colorscheme darcula]])
+    end
+  },
+  'editorconfig/editorconfig-vim'
+}

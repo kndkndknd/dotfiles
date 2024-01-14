@@ -1,4 +1,1 @@
-require "plugins"
-require "base"
-require "colorscheme"
-require "tree"
+/Users/knd/dotfiles/.config/nvim/init.lua
