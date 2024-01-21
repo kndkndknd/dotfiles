@@ -18,10 +18,21 @@ if [[ "$OSTYPE" == linux* ]]; then
     autoload -Uz compinit && compinit
     # history
     export HISTFILE=${HOME}/.zsh_history
-    export HISTSIZE=1000
+    export HISTSIZE=100000
     export SAVEHIST=100000
     setopt hist_ignore_dups
     setopt EXTENDED_HISTORY
+
+    SESSION_NAME=main
+    if [[ -z "$TMUX" && -z "$STY" ]] && type tmux >/dev/null 2>&1; then
+      option=""
+      if tmux has-session -t ${SESSION_NAME}; then
+        option="attach -t ${SESSION_NAME}"
+      else
+        option="new -s ${SESSION_NAME}"
+      fi
+      # tmux $option && exit
+    fi
 fi
 
 # Load rye
@@ -35,7 +46,12 @@ alias ci='code-insiders .'
 alias nvimconfig='nvim ~/.config/nvim/init.lua'
 alias v='nvim'
 alias work='cd ~/Sync/work'
-alias ide="~/sh/ide.sh"
+alias ide="~/dotfiles/scripts/ide.sh"
+
+# history
+# HISTFILE=$HOME/.zsh_history
+# SAVEHIST=100000
+# HISTSIZE=100000
 
 # path
 RPROMPT="%~"
