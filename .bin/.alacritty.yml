@@ -53,6 +53,9 @@ font:
   size: 14.0
   offset:
     y: 1
+  # fontをNerd Fontに設定
+  normal:
+    family: 0xProto Nerd Font
 
 # 起動時にtmuxを起動
 shell:

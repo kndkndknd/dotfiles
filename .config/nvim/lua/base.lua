@@ -28,8 +28,9 @@ vim.o.completeopt = 'menuone,noinsert'
 -- 補完表示時のEnterでは改行しない
 vim.api.nvim_set_keymap('i', '<CR>', 'pumvisible() ? "<C-y>" : "<CR>"', { expr = true })
 -- 矢印キーにCtrl+n, Ctrl+pを割り当てる
-vim.api.nvim_set_keymap('i', '<C-n>', 'pumvisible() ? "<Down>" : "<C-n>"', { expr = true })
-vim.api.nvim_set_keymap('i', '<C-p>', 'pumvisible() ? "<Up>" : "<C-p>"', { expr = true })
+vim.api.nvim_set_keymap('i', '<Down>', 'pumvisible() ? "<C-n>" : "<Down>"', { expr = true })
+vim.api.nvim_set_keymap('i', '<Up>', 'pumvisible() ? "<C-p>" : "<Up>"', { expr = true })
+-- vim.api.nvim_set_keymap('i', '<C-p>', 'pumvisible() ? "<>" : "<C-p>"', { expr = true })
 
 -- manipulation
 vim.g.mapleader = ' '
