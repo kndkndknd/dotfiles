@@ -1,1 +1,0 @@
-/Users/knd/dotfiles/.config/nvim/lua/colorscheme.lua

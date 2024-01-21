@@ -35,6 +35,7 @@ alias ci='code-insiders .'
 alias nvimconfig='nvim ~/.config/nvim/init.lua'
 alias v='nvim'
 alias work='cd ~/Sync/work'
+alias ide="~/sh/ide.sh"
 
 # path
 RPROMPT="%~"
