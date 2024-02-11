@@ -104,6 +104,6 @@ PKG_CONFIG_PATH="$HOME/src/ffmpeg_build/lib/pkgconfig" ./configure \
   --enable-libx265 \
   --enable-nonfree && \
 make -j4 && \
-echo "$password" | sudo -S make install \
+echo "$password" | sudo -S make install &&\
 hash -r
 echo "install ffmpeg done"

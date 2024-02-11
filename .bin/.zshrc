@@ -41,6 +41,9 @@ source "$HOME/.rye/env"
 # Rust
 export PATH="$HOME/.cargo/bin:$PATH"
 
+# ffmpeg
+export PATH="$HOME/src/ffmpeg_build/bin:$PATH"
+
 # alias
 alias ci='code-insiders .'
 alias nvimconfig='nvim ~/.config/nvim/init.lua'
