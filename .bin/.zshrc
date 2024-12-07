@@ -6,6 +6,16 @@ if [[ "$OSTYPE" == darwin* ]]; then
     . /opt/homebrew/opt/asdf/libexec/asdf.sh
     # Haskell(tycalCycles)
     source ${HOME}/.ghcup/env
+
+    # pnpm
+    export PNPM_HOME="/Users/knd/Library/pnpm"
+    case ":$PATH:" in
+      *":$PNPM_HOME:"*) ;;
+      *) export PATH="$PNPM_HOME:$PATH" ;;
+    esac
+    # pnpm end
+
+
 fi
 
 # Linux(zsh)
@@ -32,6 +42,30 @@ if [[ "$OSTYPE" == linux* ]]; then
         option="new -s ${SESSION_NAME}"
       fi
       # tmux $option && exit
+    fi
+
+    # OSを判別して変数に格納
+    if [[ -f /etc/os-release ]]; then
+      source /etc/os-release
+      case "$ID" in
+        ubuntu)
+          echo "Ubuntu detected"
+          # Ubuntu向けの設定
+          export PATH="$PATH:/path/to/ubuntu-specific"
+          alias ll='ls -alF'
+          ;;
+        manjaro)
+          echo "Manjaro detected"
+          # Manjaro向けの設定
+          export PATH="$PATH:/path/to/manjaro-specific"
+          alias ll='ls -lh --color=auto'
+          ;;
+        *)
+          echo "Unsupported OS: $ID"
+          ;;
+      esac
+    else
+      echo "OS information not found"
     fi
 fi
 

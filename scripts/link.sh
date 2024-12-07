@@ -36,7 +36,7 @@ function script_run {
     sh -c "$1"
 }
 
-function link_dotfiles {
+function link_dotfile_old {
     echo "[ Link dotfiles ]"
 
     local links=$(script_run "$SCRIPTS_DIR/find.sh")
@@ -52,6 +52,32 @@ function link_dotfiles {
         fi
     done
     unset IFS
+}
+
+function link_dotfiles {
+    echo "[ Link dotfiles ]"
+
+    # フォルダを再帰的に探索
+    find "$DOT_DIR" -type f | while read -r FILE; do
+    # サブフォルダ名を取得
+    RELATIVE_PATH="${FILE#$DOT_DIR/}"
+    SUBFOLDER_NAME=$(dirname "$RELATIVE_PATH")
+    
+    IFS=$'\n'
+    # .bin サブフォルダ内のファイルの場合
+    if [[ "$SUBFOLDER_NAME" == ".bin" ]]; then
+        ln -sfv "$FILE" "$HOME/$(basename "$FILE")"
+    else if [[ "$SUBFOLDER_NAME" == ".git" ]]; then
+    else if [[ "$SUBFOLDER_NAME" == "scripts" ]]; then
+    else if [[ "$SUBFOLDER_NAME" == "homebrew" ]]; then
+        # 他のサブフォルダの場合
+        DEST_DIR="$HOME/$SUBFOLDER_NAME"
+        mkdir -p "$DEST_DIR" # サブフォルダが存在しない場合に作成
+        ln -sfv "$FILE" "$DEST_DIR/$(basename "$FILE")"
+    fi
+    done
+    unset IFS
+    # echo "シンボリックリンクの作成が完了しました。"
 }
 
 link_dotfiles
