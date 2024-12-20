@@ -1,5 +1,5 @@
 -- encoding
-vim.o.encofing = 'utf-8'
+vim.o.encoding = 'utf-8'
 vim.scriptencoding = 'utf-8'
 
 -- visual
@@ -47,6 +47,8 @@ vim.api.nvim_set_keymap('n', '<Down>', 'gj', { noremap = true })
 vim.api.nvim_set_keymap('n', '<Up>', 'gk', { noremap = true })
 vim.api.nvim_set_keymap('n', 'gj', 'j', { noremap = true })
 vim.api.nvim_set_keymap('n', 'gk', 'k', { noremap = true })
+vim.api.nvim_set_keymap('i', 'jj', '<Esc>', { noremap = true })
+
 
 -- github copilot https://zenn.dev/hirokisan/articles/8f2c9ca238d8b1
 polish = function()
