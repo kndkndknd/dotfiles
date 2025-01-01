@@ -55,13 +55,6 @@ require("lazy").setup("plugins",
 	},
 })
 
--- automated settings
-local function open_nvim_tree()
-    require("nvim-tree.api").tree.open()
-end
-
--- vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
-
 -- 不可視文字の表示
 vim.opt.list = true
 vim.opt.listchars = {
@@ -76,3 +69,66 @@ vim.api.nvim_create_autocmd({ "TermOpen" }, {
   pattern = { "term://*" },
   command = "startinsert",
 })
+
+
+-- nvim-tree
+
+-- nvim-treeを起動時に開く
+-- automated settings
+local function open_nvim_tree()
+	require("nvim-tree.api").tree.open()
+end
+vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
+
+-- disable netrw at the very start of your init.lua (strongly advised)
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
+-- set termguicolors to enable highlight groups
+vim.opt.termguicolors = true
+
+-- showing the tree of my current buffer from where i open up nvim-tree
+vim.g.nvim_tree_respect_buf_cwd = 1
+
+
+require("nvim-tree").setup
+{
+	sort_by = 'extension',
+	update_focused_file = {
+		enable = true,
+		update_cwd = true,
+	},
+	view = {
+		width = '20%',
+		side = 'left',
+		signcolumn = 'no',
+	},
+
+	renderer = {
+		highlight_git = true,
+		highlight_opened_files = 'name',
+		icons = {
+			glyphs = {
+				git = {
+					unstaged = '!', renamed = '»',
+					untracked = '?', deleted = '✘',
+					staged = '✓', unmerged = '', ignored = '◌',
+				},
+			},
+		},
+	},
+
+	git = {
+		enable = true,
+		ignore = false,
+	},
+
+	actions = {
+		expand_all = {
+			max_folder_discovery = 100,
+			exclude = { '.git', 'target', 'build' },
+		},
+	},
+
+	on_attach = 'default'
+}
