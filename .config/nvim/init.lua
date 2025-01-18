@@ -132,3 +132,26 @@ require("nvim-tree").setup
 
 	on_attach = 'default'
 }
+
+-- 起動時に右側にフォーカス
+vim.api.nvim_create_autocmd("VimEnter", {
+  callback = function()
+    local api = require("nvim-tree.api")
+    api.tree.open()
+    api.tree.find_file()
+    vim.cmd("wincmd l")
+  end,
+})
+
+-- nvim-treeが開いている場合もNeoVimを終了
+-- vim.api.nvim_create_autocmd("BufEnter", {
+--   callback = function()
+--     -- ウインドウが1つかつ、現在のバッファが通常のファイルの場合
+--     if #vim.api.nvim_list_wins() == 1 then
+-- 			local buf_ft = vim.bo.filetype
+-- 			if buf_ft == "NvimTree" and buf_ft ~= "" then
+-- 				vim.cmd("quit")
+-- 			end
+-- 		end
+--   end,
+-- })
