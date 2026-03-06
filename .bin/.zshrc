@@ -3,7 +3,7 @@ if [[ "$OSTYPE" == darwin* ]]; then
     # load Homebrew
     eval "$(/opt/homebrew/bin/brew shellenv)"
     # Load asdf
-    . /opt/homebrew/opt/asdf/libexec/asdf.sh
+    # . /opt/homebrew/opt/asdf/libexec/asdf.sh
     # Haskell(tycalCycles)
     source ${HOME}/.ghcup/env
 
@@ -15,6 +15,8 @@ if [[ "$OSTYPE" == darwin* ]]; then
     esac
     # pnpm end
 
+    # mise
+    eval "$(mise activate zsh)"
 
 fi
 
@@ -69,9 +71,6 @@ if [[ "$OSTYPE" == linux* ]]; then
     fi
 fi
 
-# Load rye
-source "$HOME/.rye/env"
-
 # Rust
 export PATH="$HOME/.cargo/bin:$PATH"
 
@@ -84,6 +83,7 @@ alias nvimconfig='nvim ~/.config/nvim/init.lua'
 alias v='nvim'
 alias work='cd ~/Sync/work'
 alias ide="~/dotfiles/scripts/ide.sh"
+alias fixterm="printf '\e[?1000l\e[?1002l\e[?1003l\e[?1006l'"
 
 # history
 # HISTFILE=$HOME/.zsh_history
@@ -101,3 +101,17 @@ ZSH_THEME="agnoster"
 source $ZSH/oh-my-zsh.sh
 
 
+
+# pnpm
+export PNPM_HOME="/Users/knd/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+
+[[ "$TERM_PROGRAM" == "kiro" ]] && . "$(kiro --locate-shell-integration-path zsh)"
+
+[ -f "/Users/knd/.ghcup/env" ] && . "/Users/knd/.ghcup/env" # ghcup-env
+# moonbit
+export PATH="$HOME/.moon/bin:$PATH"
