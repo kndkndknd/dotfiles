@@ -2,8 +2,7 @@
 if [[ "$OSTYPE" == darwin* ]]; then
     # load Homebrew
     eval "$(/opt/homebrew/bin/brew shellenv)"
-    # Load asdf
-    # . /opt/homebrew/opt/asdf/libexec/asdf.sh
+
     # Haskell(tycalCycles)
     source ${HOME}/.ghcup/env
 
@@ -22,8 +21,7 @@ fi
 
 # Linux(zsh)
 if [[ "$OSTYPE" == linux* ]]; then
-    # Load asdf
-    . $HOME/.asdf/asdf.sh
+
     # append completions to fpath
     fpath=(${ASDF_DIR}/completions $fpath)
     # initialise completions with ZSH's compinit
@@ -100,6 +98,8 @@ ZSH_THEME="agnoster"
 
 source $ZSH/oh-my-zsh.sh
 
+# mise
+eval "$(/home/knd2404/.local/bin/mise activate zsh)"
 
 
 # pnpm
@@ -115,3 +115,6 @@ esac
 [ -f "/Users/knd/.ghcup/env" ] && . "/Users/knd/.ghcup/env" # ghcup-env
 # moonbit
 export PATH="$HOME/.moon/bin:$PATH"
+# uv
+eval "$(uv generate-shell-completion zsh)"
+eval "$(uvx --generate-shell-completion zsh)"
