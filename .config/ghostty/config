@@ -1,5 +1,5 @@
 theme = Dark+
-font-size = 16
+font-size = 18
 window-padding-x = 10
 window-padding-y = 5
 window-padding-balance = true
@@ -8,4 +8,6 @@ background-opacity = 0.85
 background-blur-radius = 10
 macos-titlebar-style = transparent
 
-keybind = ctrl+d=new_split:right
+keybind = ctrl+\=new_split:right
+keybind = ctrl+-=new_split:down
+keybind = shift+enter=text:\n

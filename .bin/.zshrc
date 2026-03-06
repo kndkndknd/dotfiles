@@ -14,6 +14,8 @@ if [[ "$OSTYPE" == darwin* ]]; then
     esac
     # pnpm end
 
+    # mise
+    eval "$(mise activate zsh)"
 
 fi
 
@@ -67,8 +69,6 @@ if [[ "$OSTYPE" == linux* ]]; then
     fi
 fi
 
-
-
 # Rust
 export PATH="$HOME/.cargo/bin:$PATH"
 
@@ -81,6 +81,7 @@ alias nvimconfig='nvim ~/.config/nvim/init.lua'
 alias v='nvim'
 alias work='cd ~/Sync/work'
 alias ide="~/dotfiles/scripts/ide.sh"
+alias fixterm="printf '\e[?1000l\e[?1002l\e[?1003l\e[?1006l'"
 
 # history
 # HISTFILE=$HOME/.zsh_history
@@ -100,6 +101,20 @@ source $ZSH/oh-my-zsh.sh
 # mise
 eval "$(/home/knd2404/.local/bin/mise activate zsh)"
 
+
+# pnpm
+export PNPM_HOME="/Users/knd/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+
+[[ "$TERM_PROGRAM" == "kiro" ]] && . "$(kiro --locate-shell-integration-path zsh)"
+
+[ -f "/Users/knd/.ghcup/env" ] && . "/Users/knd/.ghcup/env" # ghcup-env
+# moonbit
+export PATH="$HOME/.moon/bin:$PATH"
 # uv
 eval "$(uv generate-shell-completion zsh)"
 eval "$(uvx --generate-shell-completion zsh)"
