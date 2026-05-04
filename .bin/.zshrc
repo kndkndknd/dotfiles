@@ -17,6 +17,11 @@ if [[ "$OSTYPE" == darwin* ]]; then
     # mise
     eval "$(mise activate zsh)"
 
+    # supercollider
+    export PATH="$PATH:/Applications/SuperCollider.app/Contents/MacOS"
+
+    # claude code
+    export PATH="$HOME/.local/bin:$PATH"
 fi
 
 # Linux(zsh)
@@ -113,8 +118,6 @@ esac
 [[ "$TERM_PROGRAM" == "kiro" ]] && . "$(kiro --locate-shell-integration-path zsh)"
 
 [ -f "/Users/knd/.ghcup/env" ] && . "/Users/knd/.ghcup/env" # ghcup-env
+
 # moonbit
 export PATH="$HOME/.moon/bin:$PATH"
-# uv
-eval "$(uv generate-shell-completion zsh)"
-eval "$(uvx --generate-shell-completion zsh)"
