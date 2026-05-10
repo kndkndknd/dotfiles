@@ -72,6 +72,8 @@ if [[ "$OSTYPE" == linux* ]]; then
     else
       echo "OS information not found"
     fi
+    # mise
+    eval "$($HOME/.local/bin/mise activate zsh)"
 fi
 
 # Rust
@@ -103,8 +105,6 @@ ZSH_THEME="agnoster"
 
 source $ZSH/oh-my-zsh.sh
 
-# mise
-eval "$(/home/knd2404/.local/bin/mise activate zsh)"
 
 
 # pnpm
